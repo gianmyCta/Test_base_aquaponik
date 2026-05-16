@@ -3,21 +3,31 @@ from fastapi import FastAPI, WebSocket
 import app.function_runner as function_runner
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+import os
 
 app = FastAPI()
 
-app.mount(
-    "/assets",
-    StaticFiles(directory="static/dist/assets"),
-    name="assets"
-)
+if os.path.exists("static/dist/assets"):
+
+    app.mount(
+        "/assets",
+        StaticFiles(directory="static/dist/assets"),
+        name="assets"
+    )
 
 @app.get("/")
 async def serve_frontend():
 
-    return FileResponse(
-        "static/dist/index.html"
-    )
+    index_path = "static/dist/index.html"
+
+    if os.path.exists(index_path):
+
+        return FileResponse(index_path)
+
+    return {
+        "status": "frontend build missing"
+    }
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
