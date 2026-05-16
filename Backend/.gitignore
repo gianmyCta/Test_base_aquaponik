@@ -1,0 +1,98 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.env/
+.env
+
+# Python logs
+*.log
+
+# Pytest
+.pytest_cache/
+
+# Mypy
+.mypy_cache/
+
+# Ruff
+.ruff_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.db
+*.sqlite3
+
+# =========================
+# Node / React / Vite
+# =========================
+node_modules/
+dist/
+build/
+
+# Vite
+.vite/
+
+# npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# macOS
+# =========================
+.DS_Store
+
+# =========================
+# VSCode
+# =========================
+.vscode/
+
+# =========================
+# JetBrains
+# =========================
+.idea/
+
+# =========================
+# Environment variables
+# =========================
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+
+# =========================
+# Runtime files
+# =========================
+*.pid
+
+# =========================
+# Cache
+# =========================
+.cache/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.out
+*.err
