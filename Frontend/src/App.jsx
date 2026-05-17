@@ -124,16 +124,23 @@ function App() {
       <div
         style={{
           display: "grid",
-
           gridTemplateColumns: "1fr 1fr",
-
           gap: "30px",
-
           columnGap: "100px",
-
           alignItems: "start",
-
           marginTop: "5%",
+
+          // GLASSMORPHISM
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          borderRadius: "16px",
+
+          boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+
+          padding: "20px",
         }}
       >
         <Button text="Func 1" onClick={() => runScript("func_1")} />
