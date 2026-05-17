@@ -1,16 +1,19 @@
 import asyncio
-from app import sequenze
+from app import sequenze, test
 
 busy = False
 
 FUNCTIONS = {
-    "func_1": sequenze.func_1,
-    "func_2": sequenze.func_2,
-    "func_3": sequenze.func_3,
-    "func_4": sequenze.func_4,
-    "func_5": sequenze.func_5,
-    "func_6": sequenze.func_6,
-    "func_7": sequenze.func_7,
+    "spiega": sequenze.spiega,
+    "dispiega": sequenze.dispiega,
+    "passa_a_destra": sequenze.passa_a_destra,
+    "Passa_a_sinistra": sequenze.passa_a_sinistra,
+    "posizione_fotografia": sequenze.posizione_fotografia,
+    "posizione_centrale": sequenze.posizione_centrale,
+    "quota_z": sequenze.quota_z,
+    "camera_offset": sequenze.camera_offset,
+    "imposta_posizione": sequenze.imposta_posizione,
+    "test": test.run,
 }
 
 

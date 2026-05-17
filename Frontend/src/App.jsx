@@ -11,14 +11,14 @@ function App() {
   const [inputValue, setInputValue] = useState("");
 
   // input funzioni
-  const [func5Input, setFunc5Input] = useState("");
+  const [camera_offsetInput, setCamera_offsetInput] = useState("");
 
-  const [func6Input, setFunc6Input] = useState("");
+  const [vai_aInput, setVai_aInput] = useState("");
 
-  const [func7Input, setFunc7Input] = useState("");
+  const [imposta_posizioneInput, setImposta_posizioneInput] = useState("");
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://${window.location.host}/ws`);
+    const ws = new WebSocket("ws://localhost:8000/ws");
     ws.onopen = () => {
       console.log("Connected");
 
@@ -124,79 +124,99 @@ function App() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: "0.2fr 0.2fr 0.2fr",
           gap: "30px",
-          columnGap: "100px",
+          columnGap: "10px",
           alignItems: "start",
           marginTop: "5%",
-
-          // GLASSMORPHISM
           background: "rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
-
           border: "1px solid rgba(255, 255, 255, 0.2)",
           borderRadius: "16px",
-
           boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
-
-          padding: "20px",
+          padding: "10px",
         }}
       >
-        <Button text="Func 1" onClick={() => runScript("func_1")} />
+        <Button text="Spiega" onClick={() => runScript("spiega")} />
 
-        <Button text="Func 2" onClick={() => runScript("func_2")} />
+        <Button text="Dispiega" onClick={() => runScript("dispiega")} />
 
-        <Button text="Func 3" onClick={() => runScript("func_3")} />
+        <Button
+          text="Passa a destra"
+          onClick={() => runScript("passa_a_destra")}
+        />
 
-        <Button text="Func 4" onClick={() => runScript("func_4")} />
+        <Button
+          text="Passa a sinistra"
+          onClick={() => runScript("Passa_a_sinistra")}
+        />
+
+        <Button
+          text="Posizione fotografia"
+          onClick={() => runScript("posizione_fotografia")}
+        />
+
+        <Button
+          text="Posizione centrale"
+          onClick={() => runScript("posizione_centrale")}
+        />
+
+        <Button text="Quota z" onClick={() => runScript("quota_z")} />
+
+        <Button text="Test" onClick={() => runScript("test")} />
 
         {/* Funzioni  con parametri stringa */}
-        {/* FUNC 5 */}
+
+        {/* CAMERA OFFSET */}
 
         <div style={{ display: "flex", gap: "20px" }}>
           <Button
-            text="Func 5"
-            onClick={() => runScriptWithInput("func_5", func5Input)}
+            text="Camera offset"
+            onClick={() =>
+              runScriptWithInput("camera_offset", camera_offsetInput)
+            }
           />
 
           <input
             style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input Func 5"
-            value={func5Input}
-            onChange={(e) => setFunc5Input(e.target.value)}
+            placeholder="Input camera_offset"
+            value={camera_offsetInput}
+            onChange={(e) => setCamera_offsetInput(e.target.value)}
           />
         </div>
 
-        {/* FUNC 6 */}
+        {/* VAI A*/}
 
         <div style={{ display: "flex", gap: "20px" }}>
           <Button
-            text="Func 6"
-            onClick={() => runScriptWithInput("func_6", func6Input)}
+            text="Vai a "
+            onClick={() => runScriptWithInput("vai_a", vai_aInput)}
           />
 
           <input
             style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input Func 6"
-            value={func6Input}
-            onChange={(e) => setFunc6Input(e.target.value)}
+            placeholder="Input Vai a"
+            value={vai_aInput}
+            onChange={(e) => setVai_aInput(e.target.value)}
           />
         </div>
 
-        {/* FUNC 7 */}
+        {/* IMPOSTA POSIZIONE */}
 
         <div style={{ display: "flex", gap: "20px" }}>
           <Button
-            text="Func 7"
-            onClick={() => runScriptWithInput("func_7", func7Input)}
+            text="Imposta posizione"
+            onClick={() =>
+              runScriptWithInput("imposta_posizione", imposta_posizioneInput)
+            }
           />
 
           <input
             style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input Func 7"
-            value={func7Input}
-            onChange={(e) => setFunc7Input(e.target.value)}
+            placeholder="Input Imposta posizione"
+            value={imposta_posizioneInput}
+            onChange={(e) => setImposta_posizioneInput(e.target.value)}
           />
         </div>
       </div>

@@ -1,52 +1,78 @@
 import time
 
-def func_1():
+def spiega():
     
     time.sleep(5)
 
-    print("TEST_FUNC_1")
+    print("TEST_spiega")
 
-    return "OK TEST_1"
+    return "OK TEST_spiega"
 
-def func_2():
+def dispiega():
     
-    print("TEST_FUNC_2")
+    print("TEST_dispiega")
 
-    return "OK TEST_2"
+    return "OK TEST_dispiega"
 
-def func_3():
+def passa_a_destra():
 
-    print("TEST_FUNC_3")
+    print("TEST_passa a destra")
 
-    return "OK TEST_3"
+    return "OK TEST_passa a destra"
 
-def func_4():
+def passa_a_sinistra():
 
-    print("TEST_FUNC_4")
+    print("TEST_passa a sinistra")
 
-    return "OK TEST_4"
+    return "OK TEST_passa a sinistra"
 
-def func_5(text):
+def posizione_fotografia():
 
-    print("TEST_FUNC_5")
+    print("TEST_posizione fotografia")
+
+    return "OK TEST_posizione fotografia"
+
+def posizione_centrale():
+
+    print("TEST_posizione centrale")
+
+    return "OK TEST_posizione_centrale"
+
+def quota_z():
+
+    print("TEST_quota_z")
+
+    return "OK TEST_quota_z"
+
+def test():
+
+    print("TEST_test")
+
+    return "OK TEST"
+
+
+def camera_offset(text):
+
+    print("TEST_camera offset")
 
     print(text)
 
-    return f"OK TEST_5 -> {text}"
+    return f"OK TEST_camera_offset -> {text}"
 
-def func_6(text):
 
-    print("TEST_FUNC_6")
+def vai_a(text):
 
-    print(text)
-
-    return f"OK TEST_6 -> {text}"
-
-def func_7(text):
-
-    print("TEST_FUNC_7")
+    print("TEST_vai a")
 
     print(text)
 
-    return f"OK TEST_7 -> {text}"
+    return f"OK TEST_vai a -> {text}"
+
+def imposta_posizione(text):
+
+    print("TEST_imposta posizione")
+
+    print(text)
+
+    return f"OK TEST_imposta posizione -> {text}"
 
