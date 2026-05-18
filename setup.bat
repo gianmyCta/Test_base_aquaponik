@@ -116,4 +116,4 @@ robocopy "%PROJECT_ROOT%\frontend\dist" "%PROJECT_ROOT%\backend\static\dist" /E
 
 echo Copy completed.
 
-uvicorn app.main:app --host 127.0.0.1 --port 8000
+@REM uvicorn app.main:app --host 127.0.0.1 --port 8000
