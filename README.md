@@ -1,6 +1,7 @@
 Test_base_aquaponik
 
 Guida rapida per installare ed eseguire il progetto.
+
 Clonare la repository
 git clone <URL_REPOSITORY>
 cd Test_base_aquaponik
@@ -8,11 +9,14 @@ Setup iniziale
 
 Il progetto include uno script automatico che:
 
-crea il virtual environment Python
-installa le dipendenze backend
-installa le dipendenze frontend
-esegue la build del frontend
+- crea il virtual environment Python
+- installa le dipendenze backend
+- installa le dipendenze frontend
+- esegue la build del frontend
+
 Windows
+
+!!! Accertati che il terminale sia in cmd e non in powershell !!!
 
 Eseguire:
 
