@@ -50,3 +50,5 @@ Test_base_aquaponik/
 ├── setup.bat
 ├── start.bat
 └── README.md
+
+crea il .env come quello già presente, sostituendo IP

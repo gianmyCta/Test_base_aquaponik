@@ -1,5 +1,6 @@
 import asyncio
-from app import sequenze, test
+from app.python_test import sequenze
+from app.python_test import test
 
 busy = False
 
@@ -13,7 +14,7 @@ FUNCTIONS = {
     "quota_z": sequenze.quota_z,
     "camera_offset": sequenze.camera_offset,
     "imposta_posizione": sequenze.imposta_posizione,
-    "test": test.run,
+    "test":test.test,
 }
 
 
