@@ -13,58 +13,77 @@ echo =====================================
 echo.
 echo [1/7] Check Python...
 
-python --version >nul 2>&1
-
-IF %ERRORLEVEL% NEQ 0 (
-    echo Python non trovato.
-    echo Installa Python 3.11+ da:
-    echo https://www.python.org/downloads/
-    pause
-    exit /b
-)
-
 :: =========================
-:: CHECK NODE
+:: CHECK PYTHON 3.12.10
 :: =========================
 
 echo.
-echo [2/7] Check Node.js...
+echo [1/8] Check Python 3.12.10...
 
-node --version >nul 2>&1
+python --version 2>nul | findstr "3.12.10" >nul
 
 IF %ERRORLEVEL% NEQ 0 (
 
-    echo Node.js non trovato.
+    echo Python 3.12.10 non trovato.
     echo Download automatico...
 
-    powershell -Command "Invoke-WebRequest https://nodejs.org/dist/v20.18.0/node-v20.18.0-x64.msi -OutFile node_installer.msi"
+    powershell -Command "Invoke-WebRequest https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe -OutFile python_installer.exe"
+
+    echo Installazione Python...
+
+    start /wait python_installer.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+
+    timeout /t 10
+)
+
+python --version
+
+:: =========================
+:: CHECK NODE 24
+:: =========================
+
+echo.
+echo [2/8] Check Node.js v24...
+
+node -v 2>nul | findstr "v24" >nul
+
+IF %ERRORLEVEL% NEQ 0 (
+
+    echo Node.js v24 non trovato.
+    echo Download automatico...
+
+    powershell -Command "Invoke-WebRequest https://nodejs.org/dist/v24.13.1/node-v24.13.1-x64.msi -OutFile node_installer.msi"
 
     echo Installazione Node.js...
 
     msiexec /i node_installer.msi /passive
 
-    echo Attendere fine installazione...
-
     timeout /t 15
 )
 
+
+
 :: =========================
-:: BACKEND
+:: BACKEND VENV
 :: =========================
 
 echo.
-echo [3/7] Setup backend...
+echo [3/8] Setup Python venv...
 
-cd /d %~dp0backend
+cd /d "%PROJECT_ROOT%\backend"
 
-IF NOT EXIST venv (
-    python -m venv venv
+IF EXIST venv (
+    echo Removing old venv...
+    rmdir /s /q venv
 )
 
-venv\Scripts\python.exe -m pip install --upgrade pip
+python -m venv venv
 
-venv\Scripts\python.exe -m pip install -r requirements.txt
+call venv\Scripts\activate
 
+python -m pip install --upgrade pip
+
+pip install -r requirements.txt
 
 @REM venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 
@@ -73,14 +92,20 @@ venv\Scripts\python.exe -m pip install -r requirements.txt
 :: =========================
 
 echo.
-echo [4/7] Setup frontend...
+echo [4/8] Setup frontend...
 
-cd ..\Frontend
+cd /d "%PROJECT_ROOT%\frontend"
 
-echo Installing frontend dependencies...
+IF EXIST node_modules (
+    rmdir /s /q node_modules
+)
+
+IF EXIST package-lock.json (
+    del package-lock.json
+)
+
 call npm install
 
-echo Building frontend...
 call npm run build
 
 :: =========================
@@ -115,7 +140,7 @@ cd /d %~dp0Backend
 robocopy "%PROJECT_ROOT%\Frontend\dist" "%PROJECT_ROOT%\Backend\static\dist" /E
 
 echo Copy completed.
-
+cd /d %PROJECT_ROOT%
 
 
 
