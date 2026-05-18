@@ -109,18 +109,14 @@ IF NOT EXIST static\dist\assets (
 
 :: =========================
 :: BUILD FRONTEND
-cd /d %~dp0backend
+cd /d %~dp0Backend
 
 :: copia build frontend
-robocopy "%PROJECT_ROOT%\frontend\dist" "%PROJECT_ROOT%\backend\static\dist" /E
-
-echo Copy completed.
-cd /d %~dp0backend
-
-:: copia build frontend
-robocopy "%PROJECT_ROOT%\frontend\dist" "%PROJECT_ROOT%\backend\static\dist" /E
+robocopy "%PROJECT_ROOT%\Frontend\dist" "%PROJECT_ROOT%\Backend\static\dist" /E
 
 echo Copy completed.
 
-cd /d "%PROJECT_ROOT%"
+
+
+
 @REM uvicorn app.main:app --host 127.0.0.1 --port 8000
