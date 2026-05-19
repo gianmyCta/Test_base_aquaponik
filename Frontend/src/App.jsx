@@ -18,7 +18,7 @@ function App() {
   const [imposta_posizioneInput, setImposta_posizioneInput] = useState("");
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8000/ws");
+    const ws = new WebSocket("ws://localhost:8001/ws");
     ws.onopen = () => {
       console.log("Connected");
 
@@ -56,7 +56,7 @@ function App() {
 
     const interval = setInterval(() => {
       socket.send("status");
-    }, 1000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [socket]);
@@ -64,25 +64,19 @@ function App() {
   const runScript = (functionName) => {
     if (!socket) return;
 
-    const payload = {
-      function: functionName,
-    };
-
-    socket.send(JSON.stringify(payload));
+    // invia solo il nome funzione
+    socket.send(functionName);
   };
+
   // funzioni con parametri
   const runScriptWithInput = (functionName, value) => {
     if (!socket) return;
 
-    const payload = {
-      function: functionName,
+    // formato:
+    // funzione parametro
+    const message = `${functionName} ${value}`;
 
-      params: {
-        text: value,
-      },
-    };
-
-    socket.send(JSON.stringify(payload));
+    socket.send(message);
   };
 
   return (

@@ -18,7 +18,7 @@ echo [1/7] Check Python...
 :: =========================
 
 echo.
-echo [1/8] Check Python 3.12.10...
+echo [1/4] Check Python 3.12.10...
 
 python --version 2>nul | findstr "3.12.10" >nul
 
@@ -43,7 +43,7 @@ python --version
 :: =========================
 
 echo.
-echo [2/8] Check Node.js v24...
+echo [2/4] Check Node.js v24...
 
 node -v 2>nul | findstr "v24" >nul
 
@@ -68,9 +68,9 @@ IF %ERRORLEVEL% NEQ 0 (
 :: =========================
 
 echo.
-echo [3/8] Setup Python venv...
+echo [3/4] Setup Python venv...
 
-cd /d "%PROJECT_ROOT%\backend"
+cd /d "%PROJECT_ROOT%\Backend"
 
 IF EXIST venv (
     echo Removing old venv...
@@ -92,9 +92,9 @@ pip install -r requirements.txt
 :: =========================
 
 echo.
-echo [4/8] Setup frontend...
+echo [4/4] Setup frontend...
 
-cd /d "%PROJECT_ROOT%\frontend"
+cd /d "%PROJECT_ROOT%\Frontend"
 
 IF EXIST node_modules (
     rmdir /s /q node_modules
@@ -106,41 +106,14 @@ IF EXIST package-lock.json (
 
 call npm install
 
-call npm run build
-
-:: =========================
-:: COPY FRONTEND DIST
-:: =========================
-
-echo.
-echo [6/8] Copy frontend dist...
-
-cd ..\Backend
-
-:: crea static se manca
-IF NOT EXIST static (
-    mkdir static
-)
-
-IF NOT EXIST static\dist (
-    mkdir  static\dist
-)
-IF NOT EXIST static\dist\assets (
-    mkdir  static\dist\assets
-)
+pause
 
 
 
 
-:: =========================
-:: BUILD FRONTEND
-cd /d %~dp0Backend
 
-:: copia build frontend
-robocopy "%PROJECT_ROOT%\Frontend\dist" "%PROJECT_ROOT%\Backend\static\dist" /E
 
-echo Copy completed.
-cd /d %PROJECT_ROOT%
+
 
 
 

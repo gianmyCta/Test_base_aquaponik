@@ -1,8 +1,10 @@
 @echo off
 
-cd /d "%~dp0Backend"
+set PROJECT_ROOT=%~dp0
 
-call venv\Scripts\activate.bat
+:: FRONTEND
+start cmd /k "cd /d %PROJECT_ROOT%Frontend && npm run dev"
 
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+:: BACKEND
+start cmd /k "cd /d %PROJECT_ROOT%Backend && venv\Scripts\activate.bat && python -m uvicorn app.main:app --host 127.0.0.1 --port 8001"
 
