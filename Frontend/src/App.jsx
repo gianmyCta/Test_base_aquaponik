@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "./components/Button";
+import functions from "./functions.json";
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -8,14 +9,7 @@ function App() {
 
   const [busy, setBusy] = useState(false);
 
-  const [inputValue, setInputValue] = useState("");
-
-  // input funzioni
-  const [camera_offsetInput, setCamera_offsetInput] = useState("");
-
-  const [vai_aInput, setVai_aInput] = useState("");
-
-  const [imposta_posizioneInput, setImposta_posizioneInput] = useState("");
+  const [inputValues, setInputValues] = useState({});
 
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:8001/ws");
@@ -132,87 +126,45 @@ function App() {
           padding: "10px",
         }}
       >
-        <Button text="Spiega" onClick={() => runScript("spiega")} />
+        {functions.map((func) => (
+          <div
+            key={func.name}
+            style={{
+              display: "flex",
+              gap: "20px",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              text={func.label}
+              onClick={() => {
+                if (func.hasInput) {
+                  runScriptWithInput(func.name, inputValues[func.name] || "");
+                } else {
+                  runScript(func.name);
+                }
+              }}
+            />
 
-        <Button text="Dispiega" onClick={() => runScript("dispiega")} />
-
-        <Button
-          text="Passa a destra"
-          onClick={() => runScript("passa_a_destra")}
-        />
-
-        <Button
-          text="Passa a sinistra"
-          onClick={() => runScript("Passa_a_sinistra")}
-        />
-
-        <Button
-          text="Posizione fotografia"
-          onClick={() => runScript("posizione_fotografia")}
-        />
-
-        <Button
-          text="Posizione centrale"
-          onClick={() => runScript("posizione_centrale")}
-        />
-
-        <Button text="Quota z" onClick={() => runScript("quota_z")} />
-
-        <Button text="Test" onClick={() => runScript("test")} />
-
-        {/* Funzioni  con parametri stringa */}
-
-        {/* CAMERA OFFSET */}
-
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Button
-            text="Camera offset"
-            onClick={() =>
-              runScriptWithInput("camera_offset", camera_offsetInput)
-            }
-          />
-
-          <input
-            style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input camera_offset"
-            value={camera_offsetInput}
-            onChange={(e) => setCamera_offsetInput(e.target.value)}
-          />
-        </div>
-
-        {/* VAI A*/}
-
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Button
-            text="Vai a "
-            onClick={() => runScriptWithInput("vai_a", vai_aInput)}
-          />
-
-          <input
-            style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input Vai a"
-            value={vai_aInput}
-            onChange={(e) => setVai_aInput(e.target.value)}
-          />
-        </div>
-
-        {/* IMPOSTA POSIZIONE */}
-
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Button
-            text="Imposta posizione"
-            onClick={() =>
-              runScriptWithInput("imposta_posizione", imposta_posizioneInput)
-            }
-          />
-
-          <input
-            style={{ borderRadius: "20px", textAlign: "center" }}
-            placeholder="Input Imposta posizione"
-            value={imposta_posizioneInput}
-            onChange={(e) => setImposta_posizioneInput(e.target.value)}
-          />
-        </div>
+            {func.hasInput && (
+              <input
+                style={{
+                  borderRadius: "20px",
+                  textAlign: "center",
+                  padding: "10px",
+                }}
+                placeholder={`Input ${func.label}`}
+                value={inputValues[func.name] || ""}
+                onChange={(e) =>
+                  setInputValues({
+                    ...inputValues,
+                    [func.name]: e.target.value,
+                  })
+                }
+              />
+            )}
+          </div>
+        ))}
       </div>
       <pre>{message}</pre>
     </div>

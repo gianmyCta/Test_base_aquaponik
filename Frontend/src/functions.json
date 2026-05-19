@@ -1,0 +1,64 @@
+[
+  {
+    "name": "spiega",
+    "label": "Spiega",
+    "hasInput": false
+  },
+
+  {
+    "name": "dispiega",
+    "label": "Dispiega",
+    "hasInput": false
+  },
+  {
+    "name": "passa_a_destra",
+    "label": "Passa a Destra",
+    "hasInput": false
+  },
+  {
+    "name": "passa_a_sinistra",
+    "label": "Passa a Sinistra",
+    "hasInput": false
+  },
+
+  {
+    "name": "posizione_fotografia",
+    "label": "Posizione fotorafia",
+    "hasInput": false
+  },
+
+  {
+    "name": "posizione_centrale",
+    "label": "Posizione centrale",
+    "hasInput": false
+  },
+  {
+    "name": "quota_z",
+    "label": "Quota Z",
+    "hasInput": false
+  },
+
+  {
+    "name": "test",
+    "label": "Test",
+    "hasInput": false
+  },
+
+  {
+    "name": "camera_offset",
+    "label": "Camera Offset",
+    "hasInput": true
+  },
+
+  {
+    "name": "imposta_posizione",
+    "label": "Imposta posizione",
+    "hasInput": true
+  },
+
+  {
+    "name": "vai_a",
+    "label": "Vai A",
+    "hasInput": true
+  }
+]
