@@ -112,17 +112,31 @@ function App() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "0.2fr 0.2fr 0.2fr",
-          gap: "30px",
-          columnGap: "10px",
+
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+
+          width: "100%",
+
+          maxWidth: "1400px",
+
+          gap: "20px",
+
           alignItems: "start",
-          marginTop: "5%",
+
+          margin: "5%",
+
           background: "rgba(255, 255, 255, 0.08)",
+
           backdropFilter: "blur(12px)",
+
           WebkitBackdropFilter: "blur(12px)",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
+
+          border: "1px solid rgba(255,255,255,0.2)",
+
           borderRadius: "16px",
+
           boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+
           padding: "10px",
         }}
       >
