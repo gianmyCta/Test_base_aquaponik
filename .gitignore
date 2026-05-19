@@ -40,7 +40,7 @@ htmlcov/
 node_modules/
 dist/
 build/
-
+node_installer
 # Vite
 .vite/
 
