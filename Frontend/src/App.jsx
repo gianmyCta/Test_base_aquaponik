@@ -12,7 +12,7 @@ function App() {
   const [inputValues, setInputValues] = useState({});
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8001/ws");
+    const ws = new WebSocket(`ws://${window.location.hostname}:8001/ws`);
     ws.onopen = () => {
       console.log("Connected");
 
@@ -45,15 +45,15 @@ function App() {
     return () => ws.close();
   }, []);
 
-  useEffect(() => {
-    if (!socket) return;
+  // useEffect(() => {
+  //   if (!socket) return;
 
-    const interval = setInterval(() => {
-      socket.send("status");
-    }, 3000);
+  //   const interval = setInterval(() => {
+  //     socket.send("status");
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, [socket]);
+  //   return () => clearInterval(interval);
+  // }, [socket]);
 
   const runScript = (functionName) => {
     if (!socket) return;
